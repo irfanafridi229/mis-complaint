@@ -1,0 +1,422 @@
+{
+  "name": "mis complaint",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "SUPPORT",
+        "formDescription": "COMPLAINT FORM",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "complaint type"
+            },
+            {
+              "fieldLabel": "name"
+            },
+            {
+              "fieldLabel": "MR#"
+            },
+            {
+              "fieldLabel": "location"
+            },
+            {
+              "fieldLabel": "email"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -1376,
+        192
+      ],
+      "id": "290da27c-8887-4bdc-a07f-726ed5c3e364",
+      "name": "On form submission",
+      "webhookId": "9eb8acb1-af8f-463a-986d-7b6ba9765695"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json['complaint type'] }}",
+                    "rightValue": "printer",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "99afc345-b754-41e4-b45f-71075d09ce8a"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ce158c59-1411-45d4-b900-96d8fc44bfca",
+                    "leftValue": "={{ $('On form submission').item.json['complaint type'] }}",
+                    "rightValue": "network",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -848,
+        192
+      ],
+      "id": "6500f7e2-5bdf-4414-a79d-47f2fca6c80e",
+      "name": "Switch",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "content": "Complaint lodger \nin this section end user enter a complaint regarding MIS hardware or network or software\nafter submission the google sheets update from form.",
+        "height": 432,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1408,
+        -64
+      ],
+      "typeVersion": 1,
+      "id": "d60a652e-9ac8-43db-ad7c-2d964fcea234",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "in this section we differentiate between the complaint where this complaint go for hardwere or network or software team\n",
+        "height": 448
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -960,
+        -64
+      ],
+      "typeVersion": 1,
+      "id": "36db2ab4-9b33-40ea-899f-0fecaea1cb9e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "in this section the email send to different team member on the basis of complaint and the reply to end user.\n",
+        "height": 608,
+        "width": 528
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -640,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "156d4183-cadb-4f39-8f31-32dbc5954d9c",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1rJFzYmXbYu36JRRgC2ebc8Y7erx4OpQWoonHx1j4C6E",
+          "mode": "list",
+          "cachedResultName": "mis comlplaint",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rJFzYmXbYu36JRRgC2ebc8Y7erx4OpQWoonHx1j4C6E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rJFzYmXbYu36JRRgC2ebc8Y7erx4OpQWoonHx1j4C6E/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "complaint type": "={{ $json['complaint type'] }}",
+            "name": "={{ $json.name }}",
+            "MR#": "={{ $json['MR#'] }}",
+            "location": "={{ $json.location }}",
+            "email": "={{ $json.email }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "uid",
+              "displayName": "uid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "complaint type",
+              "displayName": "complaint type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "MR#",
+              "displayName": "MR#",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "location",
+              "displayName": "location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1152,
+        192
+      ],
+      "id": "8a384bb7-3982-4bf8-b971-d9d305b10dd7",
+      "name": "MIS complaint",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "6e2GA2dwy2nMIIdv",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "irfan03149474979@gmail.com",
+        "subject": "new compliant recived",
+        "message": "=   New Hospital Complaint Received\n  Dear Support Team,\nA new complaint has been submitted through the hospital MIS system. Please find the details below: {{ $('MIS complaint').item.json['complaint type'] }}\\ Name: {{ $('MIS complaint').item.json.name }}\\MR#: {{ $('MIS complaint').item.json['MR#'] }} Location: {{ $('MIS complaint').item.json.location }}Email: {{ $('MIS complaint').item.json.email }}Kindly review and take the necessary action.\nBest regards,\nHospital MIS Support\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -512,
+        112
+      ],
+      "id": "e3eedb2d-2561-4d3c-b234-9544b04a4ccb",
+      "name": "hardware support",
+      "webhookId": "aafd21d9-c562-491a-aa26-c388d4528bf1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "N3gsjv6mYD26hROl",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "irfanafridi229@gmail.com",
+        "subject": "new complaint",
+        "message": "=New Hospital Complaint Received   \nDear Support Team,\nA new complaint has been submitted through the hospital MIS system. Please find the details below  Complaint Type: {{ $('MIS complaint').item.json['complaint type'] }}  Name: {{ $('MIS complaint').item.json.name }}  MR#: {{ $('MIS complaint').item.json['MR#'] }}  Location: {{ $('MIS complaint').item.json.location }}  Email: {{ $('MIS complaint').item.json.email }}  Kindly review and take the necessary action.  \nBest regards,\nHospital MIS System",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -512,
+        288
+      ],
+      "id": "906871a4-e8b0-47e7-ba1e-f296a3a5a9ca",
+      "name": "network support",
+      "webhookId": "4e5173ff-dbd8-4429-aa43-5cfb7d9c30f0",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "N3gsjv6mYD26hROl",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('MIS complaint').item.json.email }}",
+        "subject": "=on you compliant  {{ $('MIS complaint').item.json['complaint type'] }}",
+        "message": "our team member contact your",
+        "options": {
+          "senderName": "support team"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -320,
+        112
+      ],
+      "id": "c281889d-3b1b-4c86-afaf-7b4a1357d634",
+      "name": "reply to end user",
+      "webhookId": "126ff1ab-dbb3-468e-96a7-980b021d7a9f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "N3gsjv6mYD26hROl",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('MIS complaint').item.json.email }}",
+        "subject": "=on your complaint of  {{ $('On form submission').item.json['complaint type'] }}",
+        "message": "thanks for contacting us",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -336,
+        288
+      ],
+      "id": "3a767708-3c7d-4b92-be08-35bba92d409a",
+      "name": "reply to end user1",
+      "webhookId": "465476c4-790d-4bc2-90ee-6ae8225e6fec",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "N3gsjv6mYD26hROl",
+          "name": "Gmail account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "MIS complaint",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "hardware support",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "network support",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        []
+      ]
+    },
+    "MIS complaint": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "hardware support": {
+      "main": [
+        [
+          {
+            "node": "reply to end user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "network support": {
+      "main": [
+        [
+          {
+            "node": "reply to end user1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9ca33231-2315-4890-b41a-1a581b7c395e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "876351bfb9a44a072910df11c5e32d28af81b6ec216221965eaa7d16ab0b746d"
+  },
+  "id": "15wCfXKOeqcfCyKK",
+  "tags": []
+}
